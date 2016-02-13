@@ -1,6 +1,6 @@
 require 'rails_helper.rb'
 
-describe "Create Post" do
+feature "Create Post" do
 	scenario "can create a post" do
 		visit '/'
 		click_link 'New Post'
@@ -10,5 +10,14 @@ describe "Create Post" do
 		expect(page).to have_content('#yummy')
 		expect(page).to have_css("img[src*='coffee.jpg']")
 
+	end
+
+	scenario "needs an image to create post" do
+
+		visit '/'
+		click_link 'New Post'
+		fill_in 'Caption', with: 'smells deliciouse #yummy'
+		click_button 'Create Post'
+		expect(page).to have_content('You need an image to post here!')
 	end
 end

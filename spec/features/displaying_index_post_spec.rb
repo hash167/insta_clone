@@ -5,6 +5,10 @@
 require 'rails_helper.rb'
 
 feature "Index Page" do 
+	background do
+    	user = create :user
+		sign_in_with(user)
+ 	end
 	it "should display factory girl objects" do
 		job_one = create(:post, caption: "This is post one")
 	    job_two = create(:post, caption: "This is the second post")

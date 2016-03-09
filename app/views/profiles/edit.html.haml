@@ -1,0 +1,29 @@
+.posts-wrapper
+  .post
+    .post-body
+      .image-wrap
+        =simple_form_for @user,url: {action: "update"}, html: {multipart: true} do |f|
+          .row
+            .col-md-12.text-center
+              =f.error_notification
+            .container-fluid
+              .row
+                .form-group.text-center
+                  %h4 Change your profile image:
+                  .img-circle
+                    =image_tag profile_avatar_select(@user), id: 'image-preview', class: 'img-responsive img-circle'
+                  =f.input :avatar, label: false, input_html: {onChange: 'loadFile(event)'}
+              .row  
+                .form-group.text-center
+                  %h4 Change your bio:
+                  = f.text_area :bio, label: false, placeholder: 'Add your bio', rows: 4, cols: 80
+              .row
+                .form-group.text-center
+                  = f.button :submit, class: 'btn-success btn-block btn-lg'
+
+
+
+
+
+
+    

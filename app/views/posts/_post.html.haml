@@ -3,7 +3,7 @@
     .post-head
       .thumb-img
       .user-name
-        = post.user.user_name
+        = link_to post.user.user_name, profile_path(post.user.user_name)
     .image.center-block
       = link_to (image_tag post.image.url(:medium), class:'img-responsive'), post_path(post)
     .comment-like-form.row
@@ -19,7 +19,7 @@
           - if post.comments.any?
             .paginator{id: "#comments-paginator-#{post.id}"}
               - unless post.comments.count <= 4
-                = link_to "view all #{post.comments.count} comments", post_comments_path(post), remote: true, class: 'more-comments', data: {post_id: "#{post.id}", type: "html"}
+                = link_to "view all #{post.comments.count} comments", post_comments_path(post), remote: true, class: 'more-comments', data:{post_id: "#{post.id}", type: "html"}
             = render post.comments.last(4), post: post
     
     .comment-like-form.row

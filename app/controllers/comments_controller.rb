@@ -8,8 +8,10 @@ class CommentsController < ApplicationController
 	before_action :set_post
 	
 	def index
-		@comments = @posts.comments.order("created_at ASC")
-		format.html { render layout: !request.xhr? }
+		@comments = @post.comments.order("created_at ASC")
+		respond_to do |format|
+			format.html { render layout: !request.xhr? }
+		end
 	end
 	def create
 		@comment = @post.comments.build(comment_params)

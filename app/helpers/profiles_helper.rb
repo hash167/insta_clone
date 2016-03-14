@@ -1,9 +1,9 @@
 module ProfilesHelper
 	def profile_avatar_select user
 		if user.avatar.exists?
-			post.avatar.url(:medium)
+			user.avatar.url(:medium)
 		else
-			'placeholder.jpg'
+			'placeholder.png'
 		end
 	end
 end

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_filter :set_post, only: [:show, :edit, :update, :destroy]
+	before_filter :set_post, only: [:show, :edit, :update, :destroy, :like, :unlike]
 	before_action :authenticate_user!
 	before_action :owned_post, only: [:edit, :update, :destroy]
 	def index
@@ -16,6 +16,26 @@ class PostsController < ApplicationController
 	def edit
 		
 	end 
+	def like  
+	  if @post.liked_by current_user
+	      respond_to do |format|
+	        format.html do 
+	        	redirect_to :back 
+	        end
+	        format.js
+	      end
+	   end
+	end
+	def unlike
+		if @post.unliked_by current_user
+	      respond_to do |format|
+	        format.html do 
+	        	redirect_to :back 
+	        end
+	        format.js
+	      end
+	   end
+	end  
 	def update
 		
 		if @post.update(post_params)
@@ -49,6 +69,7 @@ class PostsController < ApplicationController
 		params.require(:post).permit(:caption, :image)
 	end 
 	def set_post
+		puts params[:id]
 		@post = Post.find(params[:id])
 	end
 	def owned_post

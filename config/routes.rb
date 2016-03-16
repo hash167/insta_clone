@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'posts#index'
    resources :posts do
-     resources :comments
+    resources :comments
+    member do
+      get 'like'
+      get 'unlike'
+    end
    end
    get ':user_name', to: 'profiles#show', as: :profile
    get ':user_name/edit', to: 'profiles#edit', as: :edit_profile

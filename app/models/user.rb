@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   has_many :posts, dependent: :destroy
   has_many	:comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   validates :user_name, presence: true, length: {minimum: 4}
   validates_length_of :user_name, maximum: 12
   has_attached_file :avatar, styles: {:medium =>'152x152#'}

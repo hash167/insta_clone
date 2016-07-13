@@ -25,3 +25,5 @@ production:
   database: my_datbase_production
   pool: 5
   timeout: 5000
+  username: 'postgres' #<%= ENV['DATABASE_USERNAME'] %>
+  password: 'vagrant'  #<%= ENV['DATABASE_PASSWORD'] %>
